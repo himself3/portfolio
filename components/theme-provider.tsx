@@ -12,6 +12,14 @@ type ThemeProviderProps = {
   disableTransitionOnChange?: boolean
 }
 
+const ThemeContext = React.createContext<{
+  theme: Theme
+  setTheme: (theme: Theme) => void
+}>({
+  theme: 'dark',
+  setTheme: () => null,
+})
+
 export function ThemeProvider({
   children,
   defaultTheme = 'system',
@@ -47,14 +55,6 @@ export function ThemeProvider({
     </ThemeContext.Provider>
   )
 }
-
-const ThemeContext = React.createContext<{
-  theme: Theme
-  setTheme: (theme: Theme) => void
-}>({
-  theme: 'dark',
-  setTheme: () => null,
-})
 
 export const useTheme = () => {
   const context = React.useContext(ThemeContext)

@@ -52,10 +52,12 @@ export default function About() {
                   className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-border"
                 >
                   <Image
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop"
+                    src="/profile.jpg"
                     alt="Profile"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
+                    priority
                   />
                 </motion.div>
               </div>
@@ -91,7 +93,7 @@ export default function About() {
               </div>
 
               <div className="flex flex-wrap gap-3 pt-4">
-                {['React', 'TypeScript', 'Node.js', 'Next.js', 'Tailwind'].map((tech) => (
+                {['React', 'TypeScript', 'Node.js', 'Next.js', 'Tailwind', 'Javascript', 'Three.js', 'Shadcn', 'Framer Motion', 'Redux/Zustard'].map((tech) => (
                   <span
                     key={tech}
                     className="px-4 py-2 rounded-lg text-sm font-medium gradient-border shimmer"

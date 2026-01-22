@@ -130,9 +130,9 @@ export default function Hero() {
               className="grid grid-cols-2 gap-6"
             >
               {[
-                { value: '5+', label: 'Years Experience' },
-                { value: '50+', label: 'Projects Completed' },
-                { value: '30+', label: 'Happy Clients' },
+                { value: '2+', label: 'Years Experience' },
+                { value: '25+', label: 'Projects Completed' },
+                { value: '20+', label: 'Happy Clients' },
                 { value: '20+', label: 'Technologies' },
               ].map((stat, index) => (
                 <motion.div

@@ -9,10 +9,10 @@ const experiences = [
   {
     type: 'work',
     title: 'Senior Full Stack Developer',
-    company: 'Tech Innovations Inc.',
-    location: 'San Francisco, CA',
-    period: '2022 - Present',
-    description: 'Leading development of enterprise web applications using React, Next.js, and Node.js. Mentoring junior developers and architecting scalable solutions.',
+    company: 'Vortexx.',
+    location: 'Entebbe, Uganda',
+    period: '2023 - Present',
+    description: 'Leading development of enterprise web applications using React, Next.js, and Node.js. Learning more from senior developers and architecting scalable solutions.',
     achievements: [
       'Reduced application load time by 60% through optimization',
       'Led team of 5 developers on major product redesign',
@@ -22,9 +22,9 @@ const experiences = [
   {
     type: 'work',
     title: 'Full Stack Developer',
-    company: 'Digital Solutions Co.',
-    location: 'Remote',
-    period: '2020 - 2022',
+    company: 'Vortexx',
+    location: 'Entebbe, Uganda',
+    period: '2024 - present',
     description: 'Developed and maintained multiple client projects using modern web technologies. Collaborated with designers and product managers.',
     achievements: [
       'Built 15+ production-ready web applications',
@@ -34,10 +34,10 @@ const experiences = [
   },
   {
     type: 'work',
-    title: 'Frontend Developer',
-    company: 'StartUp Labs',
-    location: 'New York, NY',
-    period: '2019 - 2020',
+    title: 'Andabye',
+    company: 'Systems',
+    location: 'Kampala, Uganda',
+    period: '2023 - present',
     description: 'Created responsive user interfaces and implemented interactive features for various web applications.',
     achievements: [
       'Developed reusable component library',
@@ -46,15 +46,15 @@ const experiences = [
   },
   {
     type: 'education',
-    title: 'Bachelor of Science in Computer Science',
-    company: 'University of Technology',
-    location: 'Boston, MA',
-    period: '2015 - 2019',
-    description: 'Focused on software engineering, algorithms, and web development. Graduated with honors.',
+    title: 'Diploma In Softwae Engineering',
+    company: 'Sai Pali Institute of Technology and Management',
+    location: 'Entebbe, Uganda',
+    period: '2024 - 2026',
+    description: 'Focused on software engineering, algorithms, web development, mobile application development and management Systems Development. Graduated with honors.',
     achievements: [
-      'GPA: 3.8/4.0',
+      'GPA: 4.9/5.0',
       'Dean\'s List all semesters',
-      'Led university coding club',
+      'One of the best',
     ],
   },
 ]

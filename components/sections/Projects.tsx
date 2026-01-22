@@ -8,53 +8,45 @@ import Image from 'next/image'
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with real-time inventory management, secure payment processing, and comprehensive admin dashboard.',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop',
-    tags: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
+    title: 'Vortexx Library Management System',
+    description: 'Comprehensive library management system with user authentication, book cataloging, borrowing tracking, and administrative controls. Powered by VORTEXX technology.',
+    image: '/projects/library-system.png',
+    tags: ['React', 'Node.js', 'MongoDB', 'Express'],
     github: 'https://github.com',
     demo: 'https://demo.com',
     featured: true,
   },
   {
-    title: 'AI Content Generator',
-    description: 'AI-powered content generation tool leveraging GPT-4 API with custom prompts, templates, and content optimization features.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
-    tags: ['React', 'OpenAI', 'Node.js', 'MongoDB'],
+    title: 'TEXX Wifi Management System',
+    description: 'Real-time wifi hotspot management system with revenue tracking, voucher management, device monitoring, and comprehensive analytics for network administrators.',
+    image: '/projects/wifi-system.png',
+    tags: ['React', 'TypeScript', 'Node.js', 'Chart.js'],
     github: 'https://github.com',
     demo: 'https://demo.com',
     featured: true,
   },
   {
-    title: 'Task Management System',
-    description: 'Collaborative task management application with real-time updates, team workspaces, analytics, and productivity insights.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+    title: 'Vortexx Tech Company Website',
+    description: 'Modern corporate website for a full-service technology company. Features innovative design, service showcases, and client engagement tools for transforming ideas into digital reality.',
+    image: '/projects/vortexx-website.png',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    github: 'https://github.com',
+    demo: 'https://thevortexx.com',
+    featured: true,
+  },
+  {
+    title: 'Chanse Clinic Website',
+    description: 'A CHRIST Centered Clinic providing exceptional health care services with online appointment booking and patient portal.',
+    image: '/projects/website.jpg',
     tags: ['React', 'Firebase', 'Material-UI', 'WebSocket'],
     github: 'https://github.com',
-    demo: 'https://demo.com',
-    featured: true,
+    demo: 'https://chansepc.com',
   },
   {
-    title: 'Social Media Dashboard',
-    description: 'Analytics dashboard for managing multiple social media accounts with post scheduling and performance tracking.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    tags: ['Vue.js', 'Express', 'Chart.js', 'Redis'],
-    github: 'https://github.com',
-    demo: 'https://demo.com',
-  },
-  {
-    title: 'Fitness Tracking App',
-    description: 'Mobile-first fitness application with workout plans, progress tracking, nutrition logging, and social features.',
+    title: 'Hospital Management System',
+    description: 'Complete hospital management solution with patient records, appointment scheduling, billing, and staff management features.',
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=600&fit=crop',
-    tags: ['React Native', 'Expo', 'Supabase', 'TypeScript'],
-    github: 'https://github.com',
-    demo: 'https://demo.com',
-  },
-  {
-    title: 'Real Estate Platform',
-    description: 'Property listing platform with advanced search filters, virtual tours, mortgage calculator, and agent portal.',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
-    tags: ['Next.js', 'Prisma', 'PostgreSQL', 'Mapbox'],
+    tags: ['React', 'Node.js', 'PostgreSQL', 'TypeScript'],
     github: 'https://github.com',
     demo: 'https://demo.com',
   },
@@ -103,6 +95,7 @@ export default function Projects() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"

@@ -14,6 +14,7 @@ const skillCategories = [
     skills: [
       { name: 'React', level: 95 },
       { name: 'Next.js', level: 90 },
+      { name: 'Framer', level: 90 },
       { name: 'TypeScript', level: 88 },
       { name: 'Tailwind CSS', level: 92 },
       { name: 'JavaScript', level: 94 },
@@ -25,6 +26,7 @@ const skillCategories = [
     skills: [
       { name: 'Node.js', level: 90 },
       { name: 'Python', level: 85 },
+      { name: 'php', level: 95},
       { name: 'Express', level: 88 },
       { name: 'GraphQL', level: 82 },
       { name: 'REST APIs', level: 93 },
@@ -36,8 +38,10 @@ const skillCategories = [
     skills: [
       { name: 'PostgreSQL', level: 87 },
       { name: 'MongoDB', level: 90 },
+      { name: 'Supabase', level: 80 },
       { name: 'Redis', level: 80 },
       { name: 'Prisma', level: 85 },
+      { name: 'GraphQL', level:80 },
     ],
   },
   {
@@ -46,8 +50,10 @@ const skillCategories = [
     skills: [
       { name: 'Docker', level: 85 },
       { name: 'AWS', level: 80 },
+      { name: 'Git/Github', level: 90 },
       { name: 'Vercel', level: 92 },
       { name: 'CI/CD', level: 83 },
+      { name: 'Jest', level: 80 },
     ],
   },
   {
@@ -58,6 +64,10 @@ const skillCategories = [
       { name: 'VS Code', level: 95 },
       { name: 'Figma', level: 88 },
       { name: 'Postman', level: 90 },
+      { name: 'Base44', level: 90 },
+      { name: 'Claude ai/Claude code', level:98 },
+      { name: 'Gemini', level: 97 },
+      { name: 'CodeFlying', level: 79 },
     ],
   },
   {
@@ -67,6 +77,7 @@ const skillCategories = [
       { name: 'React Native', level: 82 },
       { name: 'Expo', level: 85 },
       { name: 'PWA', level: 88 },
+      { name: 'Flutter', level: 80 },
     ],
   },
 ]
