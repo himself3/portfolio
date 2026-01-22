@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --color-1: 221 83% 33%; /* Navy Blue */
+    --color-2: 215 16% 37%; /* Slate Gray */
+    --color-3: 173 80% 40%; /* Teal */
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --color-1: 221 83% 43%; /* Navy Blue (lighter for dark mode) */
+    --color-2: 215 20% 50%; /* Slate Gray (lighter for dark mode) */
+    --color-3: 173 80% 50%; /* Teal (lighter for dark mode) */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+}
+
+/* Accent text */
+.accent-text {
+  @apply text-primary dark:text-primary font-semibold;
+}
+
+/* Card styles */
+.card {
+  @apply bg-accent/50 border border-border rounded-xl transition-all duration-300;
+}
+
+.card-hover {
+  @apply hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5;
+}
+
+/* Section divider */
+.section-divider {
+  @apply w-20 h-1 bg-primary mx-auto;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Accent text effect */
+.gradient-text {
+  color: hsl(var(--color-1));
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 
+    0 0 10px hsl(var(--color-1) / 0.3),
+    0 0 20px hsl(var(--color-1) / 0.2);
+}
+
+/* Solid border */
+.gradient-border {
+  position: relative;
+  background: hsl(var(--background));
+  border-radius: 0.75rem;
+  border: 2px solid hsl(var(--color-1) / 0.3);
+}
+
+/* Floating animation */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid hsl(var(--color-1));
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--color-1)); }
+}
+
+/* Shimmer effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.shimmer:hover {
+  border-color: hsl(var(--color-1) / 0.6);
+}
+
+/* Solid background */
+.gradient-bg {
+  background: hsl(var(--color-1) / 0.05);
+}
+
+/* Pulse animation */
+.pulse-glow {
+  box-shadow: 0 0 20px hsl(var(--color-1) / 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.pulse-glow:hover {
+  box-shadow: 0 0 30px hsl(var(--color-1) / 0.4);
+}
