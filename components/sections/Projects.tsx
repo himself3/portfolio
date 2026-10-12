@@ -40,7 +40,7 @@ const projects: Project[] = [
     images: [{ src: '/projects/gixmedia-website.png', label: 'Screenshot' }],
     tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
     github: 'https://github.com',
-    demo: 'https://media.gixagency.com',
+    demo: 'https://gixmedia.co',
   },
   {
     title: 'SocialMaze Platform',

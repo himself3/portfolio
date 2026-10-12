@@ -1,7 +1,7 @@
 // Renders cv/resume.html to public/resume.pdf using a locally installed Chromium browser.
 // Usage: npm run cv   (override the browser with CHROME_PATH=/path/to/chrome)
 import { spawn, spawnSync } from 'node:child_process'
-import { copyFileSync, existsSync, mkdtempSync, rmSync, statSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -78,4 +78,6 @@ if (size < 10_000) {
   console.error(`PDF generation failed (output is ${size} bytes).`)
   process.exit(1)
 }
-console.log(`Wrote ${output} (${Math.round(size / 1024)} KB)`)
+const pages = (readFileSync(output, 'latin1').match(/\/Type\s*\/Page[^s]/g) || []).length
+console.log(`Wrote ${output} (${Math.round(size / 1024)} KB, ${pages} page${pages === 1 ? '' : 's'})`)
+if (pages > 1) console.warn('Warning: the CV runs past one page. Trim content in cv/resume.html to keep it to a single page.')

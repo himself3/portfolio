@@ -10,7 +10,7 @@ import { getTechIcon } from '@/lib/tech-icons'
 const roles = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver', 'Tech Enthusiast']
 
 const stats = [
-  { value: '2+', label: 'Years experience' },
+  { value: '3+', label: 'Years experience' },
   { value: '25+', label: 'Projects shipped' },
   { value: '20+', label: 'Happy clients' },
   { value: '20+', label: 'Technologies' },

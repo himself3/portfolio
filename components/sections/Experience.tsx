@@ -8,6 +8,18 @@ import SectionHeading from '@/components/SectionHeading'
 const experiences = [
   {
     type: 'work',
+    title: 'Full Stack Developer',
+    company: 'GIX Agency',
+    location: 'Kampala, Uganda',
+    period: '2026 - Present',
+    description: 'Building websites and web platforms for the agency and its clients using Next.js, React, TypeScript, and Tailwind CSS.',
+    achievements: [
+      'Built and launched the GIX Agency website (gixagency.com)',
+      'Built the GIX Media Agency website (gixmedia.co)',
+    ],
+  },
+  {
+    type: 'work',
     title: 'Senior Full Stack Developer',
     company: 'Vortexx',
     location: 'Entebbe, Uganda',

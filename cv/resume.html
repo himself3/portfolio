@@ -36,8 +36,7 @@
 
     .page {
       width: 210mm;
-      height: 297mm; /* designed to fit exactly one A4 page */
-      overflow: hidden;
+      height: 296mm; /* one A4 page (a hair under, to avoid a blank sliver page); overflow stays visible so npm run cv can detect spill-over */
       display: grid;
       grid-template-columns: 66mm 1fr;
     }
@@ -87,7 +86,7 @@
     }
 
     /* ── Main ── */
-    main { padding: 12mm 12mm 8mm 11mm; }
+    main { padding: 10mm 12mm 6mm 11mm; }
 
     header h1 {
       font-family: 'Space Grotesk', sans-serif;
@@ -106,7 +105,7 @@
     }
     header .bar { width: 16mm; height: 1.2mm; border-radius: 1mm; background: var(--teal); margin-top: 3mm; }
 
-    section { margin-top: 4.2mm; }
+    section { margin-top: 3.6mm; }
     section > h2 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 11pt;
@@ -198,6 +197,14 @@
 
         <div class="entry">
           <div class="entry-head">
+            <h3>Full Stack Developer <span class="org">· GIX Agency</span></h3>
+            <span class="when">2026 – Present · Kampala, Uganda</span>
+          </div>
+          <p>Building websites and web platforms for the agency and its clients, including gixagency.com and gixmedia.co.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
             <h3>Senior Full Stack Developer <span class="org">· Vortexx</span></h3>
             <span class="when">2023 – Present · Entebbe, Uganda</span>
           </div>
@@ -245,7 +252,7 @@
           </div>
           <div class="project">
             <h3>GIX Media Agency</h3>
-            <a href="https://media.gixagency.com">media.gixagency.com</a>
+            <a href="https://gixmedia.co">gixmedia.co</a>
             <div class="stack">Next.js · React · TypeScript · Tailwind CSS</div>
           </div>
           <div class="project">
@@ -289,7 +296,7 @@
             <span class="when">2024 – 2026 · Entebbe, Uganda</span>
           </div>
           <p class="org">Sai Pali Institute of Technology and Management</p>
-          <p>Software engineering, algorithms, web and mobile application development, and management systems development. Graduated with honours. GPA 4.9 / 5.0, Dean's List every semester.</p>
+          <p>Graduated with honours · GPA 4.9 / 5.0 · Dean's List every semester</p>
         </div>
       </section>
     </main>
