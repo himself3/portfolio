@@ -2,35 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Design system: "Soft Glass"
+ * ─ Neumorphism is the ground: one continuous surface colour, every control and
+ *   content card is extruded from (or pressed into) it with a light/dark shadow pair.
+ * ─ Glassmorphism is the air: navigation, hero stats and project cards float as
+ *   frosted panes over pools of coloured light.
+ * Both are driven purely by tokens, so dark mode is a token swap.
+ */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --border: 240 5.9% 90%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --color-1: 221 83% 33%; /* Navy Blue */
-    --color-2: 215 16% 37%; /* Slate Gray */
-    --color-3: 173 80% 40%; /* Teal */
+    --background: 222 30% 93%;
+    --foreground: 222 30% 14%;
+    --border: 222 22% 84%;
+    --primary: 221 83% 33%;
+    --primary-foreground: 222 30% 98%;
+    --accent: 222 26% 89%;
+    --accent-foreground: 222 30% 14%;
+    --muted: 222 26% 89%;
+    --muted-foreground: 222 14% 38%;
+    --color-1: 221 83% 33%; /* Navy — primary actions, headings */
+    --color-2: 215 16% 37%; /* Slate — secondary */
+    --color-3: 173 80% 32%; /* Teal — accent, glows */
+
+    /* Neumorphic surface */
+    --neu-hi: 0 0% 99%;
+    --neu-lo: 222 24% 76%;
+    --neu-d: 8px;
+    --neu-blur: 18px;
+
+    /* Glass */
+    --glass-tint: 0 0% 99%;
+    --glass-a1: 0.62;
+    --glass-a2: 0.32;
+    --glass-edge: 0 0% 99% / 0.75;
+    --glass-shadow: 222 40% 30% / 0.12;
+
+    /* Ambient light behind glass */
+    --glow-1: 173 80% 55%;
+    --glow-2: 221 83% 60%;
+    --glow-3: 24 95% 65%;
+    --glow-alpha: 0.35;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --color-1: 221 83% 43%; /* Navy Blue (lighter for dark mode) */
-    --color-2: 215 20% 50%; /* Slate Gray (lighter for dark mode) */
-    --color-3: 173 80% 50%; /* Teal (lighter for dark mode) */
+    --background: 222 14% 14%;
+    --foreground: 222 20% 92%;
+    --border: 222 10% 22%;
+    --primary: 221 83% 62%;
+    --primary-foreground: 222 30% 10%;
+    --accent: 222 12% 18%;
+    --accent-foreground: 222 20% 92%;
+    --muted: 222 12% 18%;
+    --muted-foreground: 222 10% 66%;
+    --color-1: 221 83% 66%;
+    --color-2: 215 20% 60%;
+    --color-3: 173 70% 50%;
+
+    --neu-hi: 222 12% 20%;
+    --neu-lo: 222 18% 7%;
+
+    --glass-tint: 222 30% 90%;
+    --glass-a1: 0.1;
+    --glass-a2: 0.03;
+    --glass-edge: 222 30% 90% / 0.14;
+    --glass-shadow: 222 50% 3% / 0.5;
+
+    --glow-alpha: 0.28;
   }
 }
 
@@ -38,118 +76,217 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
   }
+
+  ::selection {
+    background: hsl(var(--color-3) / 0.25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+  border-radius: 9999px;
+  border: 3px solid hsl(var(--background));
+  background: hsl(var(--neu-lo));
 }
 
-/* Accent text */
-.accent-text {
-  @apply text-primary dark:text-primary font-semibold;
+@layer components {
+  /* ───────────── Neumorphism ───────────── */
+  .neu-raised {
+    background: hsl(var(--background));
+    box-shadow:
+      var(--neu-d) var(--neu-d) var(--neu-blur) hsl(var(--neu-lo)),
+      calc(var(--neu-d) * -1) calc(var(--neu-d) * -1) var(--neu-blur) hsl(var(--neu-hi));
+  }
+
+  .neu-raised-sm {
+    background: hsl(var(--background));
+    box-shadow:
+      4px 4px 10px hsl(var(--neu-lo)),
+      -4px -4px 10px hsl(var(--neu-hi));
+  }
+
+  .neu-inset {
+    background: hsl(var(--background));
+    box-shadow:
+      inset 4px 4px 10px hsl(var(--neu-lo)),
+      inset -4px -4px 10px hsl(var(--neu-hi));
+  }
+
+  .neu-inset-sm {
+    background: hsl(var(--background));
+    box-shadow:
+      inset 2px 2px 5px hsl(var(--neu-lo)),
+      inset -2px -2px 5px hsl(var(--neu-hi));
+  }
+
+  /* Interactive extruded control: lifts on hover, presses in on click */
+  .neu-btn {
+    @apply neu-raised-sm;
+    transition:
+      box-shadow 200ms ease-out,
+      transform 150ms ease-out,
+      color 200ms ease-out;
+  }
+
+  .neu-btn:hover {
+    box-shadow:
+      6px 6px 14px hsl(var(--neu-lo)),
+      -6px -6px 14px hsl(var(--neu-hi));
+  }
+
+  .neu-btn:active,
+  .neu-btn[aria-pressed='true'],
+  .neu-btn[aria-selected='true'] {
+    box-shadow:
+      inset 3px 3px 8px hsl(var(--neu-lo)),
+      inset -3px -3px 8px hsl(var(--neu-hi));
+  }
+
+  .neu-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Pressed-in form field */
+  .neu-field {
+    @apply neu-inset w-full rounded-2xl px-5 py-3.5 text-foreground placeholder:text-muted-foreground/70;
+    border: 1px solid transparent;
+    transition:
+      border-color 200ms ease-out,
+      box-shadow 200ms ease-out;
+  }
+
+  .neu-field:focus {
+    outline: none;
+    border-color: hsl(var(--color-3) / 0.5);
+    box-shadow:
+      inset 4px 4px 10px hsl(var(--neu-lo)),
+      inset -4px -4px 10px hsl(var(--neu-hi)),
+      0 0 0 4px hsl(var(--color-3) / 0.12);
+  }
+
+  /* Primary call to action: filled navy, but still sits on the soft surface */
+  .btn-primary {
+    background: hsl(var(--color-1));
+    color: hsl(var(--primary-foreground));
+    box-shadow:
+      6px 6px 14px hsl(var(--neu-lo)),
+      -6px -6px 14px hsl(var(--neu-hi)),
+      inset 0 1px 0 hsl(0 0% 100% / 0.2);
+    transition:
+      box-shadow 200ms ease-out,
+      transform 150ms ease-out,
+      filter 200ms ease-out;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.08);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+    box-shadow:
+      inset 3px 3px 8px hsl(222 60% 10% / 0.45),
+      inset -2px -2px 6px hsl(0 0% 100% / 0.12);
+  }
+
+  .dark .btn-primary {
+    color: hsl(222 30% 8%);
+  }
+
+  /* ───────────── Glassmorphism ───────────── */
+  .glass {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--glass-tint) / var(--glass-a1)),
+      hsl(var(--glass-tint) / var(--glass-a2))
+    );
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid hsl(var(--glass-edge));
+    box-shadow:
+      inset 0 1px 0 hsl(var(--glass-edge)),
+      0 16px 40px hsl(var(--glass-shadow));
+  }
+
+  .glass-hover {
+    transition:
+      transform 300ms ease-out,
+      box-shadow 300ms ease-out,
+      background 300ms ease-out;
+  }
+
+  .glass-hover:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 hsl(var(--glass-edge)),
+      0 24px 56px hsl(var(--glass-shadow));
+  }
+
+  /* Pools of coloured light that give glass something to refract */
+  .ambient {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ambient > span {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    opacity: var(--glow-alpha);
+  }
+
+  /* Focus ring shared by every interactive element */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    --tw-ring-color: hsl(var(--color-3));
+    --tw-ring-offset-color: hsl(var(--background));
+  }
 }
 
-/* Card styles */
-.card {
-  @apply bg-accent/50 border border-border rounded-xl transition-all duration-300;
-}
-
-.card-hover {
-  @apply hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5;
-}
-
-/* Section divider */
-.section-divider {
-  @apply w-20 h-1 bg-primary mx-auto;
-}
-
-/* Smooth transitions */
-.smooth-transition {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-/* Accent text effect */
+/* ───────────── Type helpers ───────────── */
 .gradient-text {
   color: hsl(var(--color-1));
 }
 
-/* Glowing text effect */
-.glow-text {
-  text-shadow: 
-    0 0 10px hsl(var(--color-1) / 0.3),
-    0 0 20px hsl(var(--color-1) / 0.2);
+.eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em];
+  color: hsl(var(--color-3));
 }
 
-/* Solid border */
-.gradient-border {
-  position: relative;
-  background: hsl(var(--background));
-  border-radius: 0.75rem;
-  border: 2px solid hsl(var(--color-1) / 0.3);
-}
-
-/* Floating animation */
-.float-animation {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Typewriter effect */
-.typewriter {
-  overflow: hidden;
-  border-right: 3px solid hsl(var(--color-1));
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: hsl(var(--color-1)); }
-}
-
-/* Shimmer effect */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.shimmer:hover {
-  border-color: hsl(var(--color-1) / 0.6);
-}
-
-/* Solid background */
-.gradient-bg {
-  background: hsl(var(--color-1) / 0.05);
-}
-
-/* Pulse animation */
-.pulse-glow {
-  box-shadow: 0 0 20px hsl(var(--color-1) / 0.2);
-  transition: box-shadow 0.3s ease;
-}
-
-.pulse-glow:hover {
-  box-shadow: 0 0 30px hsl(var(--color-1) / 0.4);
+.section-divider {
+  @apply mx-auto h-1.5 w-20 rounded-full;
+  background: hsl(var(--color-3));
+  box-shadow: 0 0 16px hsl(var(--color-3) / 0.45);
 }

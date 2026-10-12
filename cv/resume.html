@@ -1,0 +1,298 @@
+<!doctype html>
+<!--
+  Source for public/resume.pdf (the "Download CV" button).
+  Edit this file, then regenerate the PDF with:  npm run cv
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Kamugisha Ali | CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #161c2d;
+      --muted: #4f586b;
+      --soft: #e8ecf4;
+      --line: #d5dbe7;
+      --navy: #0f3a99;
+      --teal: #0f8a7d;
+    }
+
+    @page { size: A4; margin: 0; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      line-height: 1.4;
+      color: var(--ink);
+      background: #fdfdfe;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm; /* designed to fit exactly one A4 page */
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 66mm 1fr;
+    }
+
+    /* ── Sidebar ── */
+    aside {
+      background: var(--soft);
+      padding: 14mm 8mm 12mm 9mm;
+    }
+
+    .photo {
+      width: 36mm;
+      height: 36mm;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 5mm;
+      border: 2.5mm solid #fdfdfe;
+      box-shadow: 2mm 2mm 5mm #c3cbdb, -1.5mm -1.5mm 4mm #ffffff;
+    }
+
+    aside h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 5mm 0 2mm;
+    }
+
+    .contact { list-style: none; }
+    .contact li { margin-bottom: 2mm; overflow-wrap: anywhere; }
+    .contact .k { display: block; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .contact a { color: var(--ink); text-decoration: none; font-weight: 500; }
+
+    .skill-group { margin-bottom: 2.4mm; }
+    .skill-group h3 { font-size: 8.5pt; font-weight: 600; margin-bottom: 1.2mm; }
+    .chips { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+    .chips span {
+      font-size: 7.5pt;
+      padding: 0.6mm 2.2mm;
+      border-radius: 99px;
+      background: #fdfdfe;
+      color: var(--muted);
+      border: 0.25mm solid var(--line);
+    }
+
+    /* ── Main ── */
+    main { padding: 12mm 12mm 8mm 11mm; }
+
+    header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26pt;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--navy); }
+    header .role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12.5pt;
+      font-weight: 500;
+      color: var(--teal);
+      margin-top: 1.5mm;
+    }
+    header .bar { width: 16mm; height: 1.2mm; border-radius: 1mm; background: var(--teal); margin-top: 3mm; }
+
+    section { margin-top: 4.2mm; }
+    section > h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      padding-bottom: 1.5mm;
+      border-bottom: 0.3mm solid var(--line);
+      margin-bottom: 2.5mm;
+    }
+
+    .summary { color: var(--muted); }
+
+    .entry { margin-bottom: 3mm; break-inside: avoid; }
+    .entry-head { display: flex; justify-content: space-between; gap: 4mm; align-items: baseline; }
+    .entry h3 { font-size: 10pt; font-weight: 600; }
+    .entry .org { color: var(--muted); font-weight: 500; }
+    .entry .when { font-size: 8pt; color: var(--muted); white-space: nowrap; text-align: right; }
+    .entry p { color: var(--muted); margin-top: 1mm; }
+    .entry ul { margin: 1.5mm 0 0 4mm; color: var(--muted); }
+    .entry li { margin-bottom: 0.6mm; }
+    .entry li::marker { color: var(--teal); }
+
+    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 2.2mm 5mm; }
+    .project { break-inside: avoid; }
+    .project h3 { font-size: 9pt; font-weight: 600; line-height: 1.3; }
+    .project a { display: block; font-size: 7.5pt; line-height: 1.35; color: var(--teal); text-decoration: none; }
+    .project p { font-size: 8.5pt; color: var(--muted); margin-top: 0.6mm; }
+    .project .stack { font-size: 7.5pt; line-height: 1.35; color: var(--navy); margin-top: 0.3mm; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside>
+      <img class="photo" src="photo.jpg" alt="Kamugisha Ali" />
+
+      <h2>Contact</h2>
+      <ul class="contact">
+        <li><span class="k">Email</span><a href="mailto:kamugishaali3@gmail.com">kamugishaali3@gmail.com</a></li>
+        <li><span class="k">Phone</span><a href="tel:+256790956548">+256 790 956548</a></li>
+        <li><span class="k">Phone</span><a href="tel:+256702133329">+256 702 133329</a></li>
+        <li><span class="k">Location</span>Entebbe, Uganda</li>
+      </ul>
+
+      <h2>Skills</h2>
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <div class="chips"><span>React</span><span>Next.js</span><span>TypeScript</span><span>JavaScript</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Three.js</span><span>shadcn/ui</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Backend</h3>
+        <div class="chips"><span>Node.js</span><span>Express</span><span>PHP</span><span>Laravel</span><span>Python</span><span>GraphQL</span><span>REST APIs</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Databases</h3>
+        <div class="chips"><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Supabase</span><span>Redis</span><span>Prisma</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Mobile</h3>
+        <div class="chips"><span>React Native</span><span>Expo</span><span>Flutter</span><span>PWA</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>DevOps &amp; Testing</h3>
+        <div class="chips"><span>Docker</span><span>AWS</span><span>Vercel</span><span>CI/CD</span><span>Git / GitHub</span><span>Jest</span><span>Cypress</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <div class="chips"><span>Figma</span><span>VS Code</span><span>Postman</span><span>Claude Code</span><span>Gemini</span><span>Base44</span></div>
+      </div>
+    </aside>
+
+    <main>
+      <header>
+        <h1>Kamugisha <span>Ali</span></h1>
+        <p class="role">Full Stack Developer &amp; UI/UX Designer</p>
+        <div class="bar"></div>
+      </header>
+
+      <section>
+        <h2>Profile</h2>
+        <p class="summary">
+          Full-stack developer based in Entebbe, Uganda with over 3 years of experience building web applications,
+          mobile applications and management systems. I build seamless user experiences on robust, scalable
+          architectures, with a focus on clean, efficient code and current industry best practices.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Senior Full Stack Developer <span class="org">· Vortexx</span></h3>
+            <span class="when">2023 – Present · Entebbe, Uganda</span>
+          </div>
+          <p>Leading development of enterprise web applications using React, Next.js and Node.js, and architecting scalable solutions.</p>
+          <ul>
+            <li>Reduced application load time by 60% through optimisation</li>
+            <li>Led a team of 5 developers on a major product redesign</li>
+            <li>Implemented a CI/CD pipeline that cut deployment time by 80%</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Full Stack Developer <span class="org">· Vortexx</span></h3>
+            <span class="when">2024 – Present · Entebbe, Uganda</span>
+          </div>
+          <p>Developed and maintained multiple client projects using modern web technologies, collaborating with designers and product managers.</p>
+          <ul>
+            <li>Built 15+ production-ready web applications</li>
+            <li>Improved code quality with comprehensive testing</li>
+            <li>Contributed to open-source projects</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Andabye <span class="org">· Systems</span></h3>
+            <span class="when">2023 – Present · Kampala, Uganda</span>
+          </div>
+          <p>Created responsive user interfaces and implemented interactive features for a range of web applications.</p>
+          <ul>
+            <li>Developed a reusable component library</li>
+            <li>Improved accessibility compliance to WCAG 2.1</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Selected Projects</h2>
+        <div class="projects">
+          <div class="project">
+            <h3>GIX Agency</h3>
+            <a href="https://gixagency.com">gixagency.com</a>
+            <div class="stack">Next.js · React · TypeScript · Tailwind CSS</div>
+          </div>
+          <div class="project">
+            <h3>GIX Media Agency</h3>
+            <a href="https://media.gixagency.com">media.gixagency.com</a>
+            <div class="stack">Next.js · React · TypeScript · Tailwind CSS</div>
+          </div>
+          <div class="project">
+            <h3>SocialMaze Platform</h3>
+            <a href="https://socialmaze.co">socialmaze.co</a>
+            <div class="stack">Next.js · Node.js · PostgreSQL · TypeScript</div>
+          </div>
+          <div class="project">
+            <h3>Viewix Digital Signage</h3>
+            <a href="https://app.viewix.co">app.viewix.co</a>
+            <div class="stack">Next.js · MySQL · TypeScript</div>
+          </div>
+          <div class="project">
+            <h3>Preacher Holdings</h3>
+            <a href="https://preacherholdings.com">preacherholdings.com</a>
+            <div class="stack">Next.js · Tailwind CSS</div>
+          </div>
+          <div class="project">
+            <h3>Preacher University</h3>
+            <a href="https://preacheruniversity.com">preacheruniversity.com</a>
+            <div class="stack">Next.js · TypeScript · LMS</div>
+          </div>
+          <div class="project">
+            <h3>Vortexx Library System</h3>
+            <a href="https://lib-system.netlify.app">lib-system.netlify.app</a>
+            <div class="stack">React · Node.js · Express · MongoDB</div>
+          </div>
+          <div class="project">
+            <h3>Vortexx Tech Website</h3>
+            <a href="https://thevortexx.com">thevortexx.com</a>
+            <div class="stack">React · TypeScript · Tailwind CSS · Framer Motion</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Diploma in Software Engineering</h3>
+            <span class="when">2024 – 2026 · Entebbe, Uganda</span>
+          </div>
+          <p class="org">Sai Pali Institute of Technology and Management</p>
+          <p>Software engineering, algorithms, web and mobile application development, and management systems development. Graduated with honours. GPA 4.9 / 5.0, Dean's List every semester.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

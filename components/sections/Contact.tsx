@@ -1,186 +1,167 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
+import { Mail, MapPin, Phone, Send, CheckCircle2 } from 'lucide-react'
+import { FaGithub, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
+import SectionHeading from '@/components/SectionHeading'
+
+const CONTACT_EMAIL = 'kamugishaali3@gmail.com'
+
+const contactInfo = [
+  { icon: Mail, label: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+  { icon: Phone, label: 'Phone', value: '+256 790 956548', href: 'tel:+256790956548' },
+  { icon: Phone, label: 'Phone', value: '+256 702 133329', href: 'tel:+256702133329' },
+  { icon: MapPin, label: 'Location', value: 'Entebbe, Uganda', href: undefined },
+]
+
+const socialLinks = [
+  { icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
+  { icon: FaLinkedinIn, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: FaXTwitter, href: 'https://twitter.com', label: 'X (Twitter)' },
+]
+
+const emptyForm = { name: '', email: '', subject: '', message: '' }
 
 export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [formState, setFormState] = useState(emptyForm)
+  const [isHandedOff, setIsHandedOff] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // No backend: hand the composed message to the visitor's mail client so it is
+  // actually delivered, rather than pretending to send it.
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormState({ name: '', email: '', subject: '', message: '' })
-    
-    setTimeout(() => setIsSubmitted(false), 3000)
+    const { name, email, subject, message } = formState
+    const body = `${message.trim()}\n\n— ${name.trim()} (${email.trim()})`
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject.trim())}&body=${encodeURIComponent(body)}`
+    setIsHandedOff(true)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormState((prev) => ({ ...prev, [name]: value }))
+    if (isHandedOff) setIsHandedOff(false)
   }
-
-  const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'kamugishaali73@gmail.com', href: 'mailto:kamugishaali73@gmail.com' },
-    { icon: Phone, label: 'Phone', value: '+256 702133329', href: 'tel:+256 790956548' },
-    { icon: MapPin, label: 'Location', value: 'Entebbe, Uganda', href: '#' },
-  ]
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  ]
 
   return (
-    <section id="contact" ref={ref} className="relative py-24 md:py-32 bg-accent/30">
+    <section id="contact" ref={ref} className="relative py-24 md:py-32">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 gradient-text">
-            Get In Touch
-          </h2>
-          <div className="section-divider mb-6" style={{ backgroundColor: 'hsl(var(--color-1))' }} />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to bring your ideas to life
-          </p>
-        </motion.div>
+        <SectionHeading
+          eyebrow="Contact"
+          title="Get In Touch"
+          subtitle="Have a project in mind? Let's work together to bring your ideas to life"
+          isInView={isInView}
+        />
 
-        <div className="grid md:grid-cols-5 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:col-span-2 space-y-8"
+            transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+            className="lg:col-span-2 space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
-                Let's Connect
-              </h3>
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-3">Let&apos;s Connect</h3>
               <p className="text-muted-foreground leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your
+                vision.
               </p>
             </div>
 
-            {/* Contact Details */}
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={info.label}
-                  href={info.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  whileHover={{ x: 5 }}
-                  className="flex items-center gap-4 p-4 card card-hover group gradient-border"
-                >
-                  <div className="p-3 rounded-lg group-hover:scale-110 transition-transform text-white"
-                    style={{
-                      backgroundColor: index % 3 === 0 ? 'hsl(var(--color-1))' : index % 3 === 1 ? 'hsl(var(--color-2))' : 'hsl(var(--color-3))'
-                    }}
-                  >
-                    <info.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-semibold text-foreground">{info.value}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
+            <ul className="space-y-5">
+              {contactInfo.map((info) => {
+                const content = (
+                  <>
+                    <span className="neu-inset w-12 h-12 shrink-0 rounded-2xl grid place-items-center">
+                      <info.icon className="w-5 h-5" strokeWidth={1.75} style={{ color: 'hsl(var(--color-3))' }} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-xs uppercase tracking-wider text-muted-foreground">{info.label}</span>
+                      <span className="block font-semibold text-foreground truncate">{info.value}</span>
+                    </span>
+                  </>
+                )
+                return (
+                  <li key={info.value}>
+                    {info.href ? (
+                      <a href={info.href} className="neu-btn focus-ring flex items-center gap-4 p-4 rounded-3xl">
+                        {content}
+                      </a>
+                    ) : (
+                      <div className="neu-raised-sm flex items-center gap-4 p-4 rounded-3xl">{content}</div>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
 
-            {/* Social Links */}
             <div>
               <p className="text-muted-foreground mb-4 font-medium">Follow me</p>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
+              <div className="flex gap-4">
+                {socialLinks.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-3 border border-border rounded-lg hover:bg-accent transition-colors"
+                    aria-label={label}
+                    className="neu-btn focus-ring w-12 h-12 rounded-full grid place-items-center text-muted-foreground hover:text-foreground"
                   >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
+                    <Icon className="w-5 h-5" />
+                  </a>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:col-span-3"
+            transition={{ duration: 0.5, delay: 0.25, ease: 'easeOut' }}
+            className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="card p-8 space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="neu-raised rounded-[2rem] p-6 sm:p-8 md:p-10 space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2.5 pl-1">
                     Your Name
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
+                    autoComplete="name"
                     value={formState.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors"
-                    placeholder="Kamugisha Ali"
+                    maxLength={100}
+                    className="neu-field"
+                    placeholder="Jane Nakato"
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2.5 pl-1">
                     Your Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
                     value={formState.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors"
-                    placeholder="ali@example.com"
+                    maxLength={254}
+                    className="neu-field"
+                    placeholder="jane@company.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2.5 pl-1">
                   Subject
                 </label>
                 <input
@@ -190,13 +171,14 @@ export default function Contact() {
                   value={formState.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors"
-                  placeholder="Project Inquiry"
+                  maxLength={150}
+                  className="neu-field"
+                  placeholder="Project inquiry"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2.5 pl-1">
                   Message
                 </label>
                 <textarea
@@ -205,49 +187,30 @@ export default function Contact() {
                   value={formState.message}
                   onChange={handleChange}
                   required
+                  maxLength={2000}
                   rows={5}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+                  className="neu-field resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
 
-              <motion.button
+              <button
                 type="submit"
-                disabled={isSubmitting || isSubmitted}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full py-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all relative overflow-hidden group ${
-                  isSubmitted
-                    ? 'bg-green-600 text-white'
-                    : 'text-white'
-                }`}
-                style={!isSubmitted ? {
-                  backgroundColor: 'hsl(var(--color-1))'
-                } : {}}
+                className="btn-primary focus-ring w-full min-h-[56px] rounded-2xl font-semibold flex items-center justify-center gap-2"
               >
-                {!isSubmitted && (
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                )}
-                <span className="relative z-10">
-                  {isSubmitting ? (
-                    <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full inline-block mr-2"
-                      />
-                      Sending...
-                    </>
-                  ) : isSubmitted ? (
-                    <>✓ Message Sent!</>
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="w-5 h-5" />
-                    </>
-                  )}
-                </span>
-              </motion.button>
+                Send Message
+                <Send className="w-5 h-5" />
+              </button>
+
+              <p
+                role="status"
+                className={`flex items-center justify-center gap-2 text-sm text-muted-foreground transition-opacity duration-300 ${
+                  isHandedOff ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" aria-hidden="true" />
+                {isHandedOff ? 'Your email app should open with the message ready to send.' : ' '}
+              </p>
             </form>
           </motion.div>
         </div>

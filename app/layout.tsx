@@ -14,8 +14,8 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'John Doe - Full Stack Developer',
-  description: 'Portfolio of John Doe - Full Stack Developer specializing in React, Next.js, and modern web technologies',
+  title: 'Kamugisha Ali | Full Stack Developer',
+  description: 'Portfolio of Kamugisha Ali, Full Stack Developer specializing in React, Next.js, and modern web technologies',
   keywords: ['developer', 'portfolio', 'full stack', 'react', 'next.js', 'typescript'],
 }
 
@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
