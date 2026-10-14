@@ -22,7 +22,7 @@ type Project = {
   tags: string[]
   github: string
   demo: string
-  /** Optional link to the product itself, shown as a second button beside "Live site". */
+  /** Optional link to the product itself; adds an "App" button beside the website link. */
   app?: string
   featured?: boolean
 }
@@ -248,15 +248,18 @@ export default function Projects() {
                       ))}
                     </ul>
 
-                    <div className="flex gap-3">
+                    {/* Narrow cards (3-up at ~1024px) leave ~260px here, so with two links the
+                        labels shorten to "Website"/"App" and nothing is allowed to wrap. */}
+                    <div className="flex gap-2">
                       <a
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-primary focus-ring flex-1 min-h-[44px] rounded-xl text-sm font-semibold inline-flex items-center justify-center gap-2"
+                        aria-label={`${project.title} website`}
+                        className="btn-primary focus-ring flex-1 min-w-0 min-h-[44px] px-3 rounded-xl text-sm font-semibold whitespace-nowrap inline-flex items-center justify-center gap-1.5"
                       >
-                        Live site
-                        <ArrowUpRight className="w-4 h-4" />
+                        {project.app ? 'Website' : 'Live site'}
+                        <ArrowUpRight className="w-4 h-4 shrink-0" />
                       </a>
                       {project.app && (
                         <a
@@ -264,10 +267,10 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Open the ${project.title} app`}
-                          className="glass focus-ring min-h-[44px] px-4 rounded-xl text-sm font-semibold text-foreground inline-flex items-center justify-center gap-2 transition-transform duration-150 hover:-translate-y-0.5 active:scale-95"
+                          className="glass focus-ring shrink-0 min-h-[44px] px-3 rounded-xl text-sm font-semibold text-foreground whitespace-nowrap inline-flex items-center justify-center gap-1.5 transition-transform duration-150 hover:-translate-y-0.5 active:scale-95"
                         >
-                          Open app
-                          <ArrowUpRight className="w-4 h-4" />
+                          App
+                          <ArrowUpRight className="w-4 h-4 shrink-0" />
                         </a>
                       )}
                       <a
@@ -275,7 +278,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${project.title} source code on GitHub`}
-                        className="glass focus-ring w-11 h-11 rounded-xl grid place-items-center text-foreground transition-transform duration-150 hover:-translate-y-0.5 active:scale-95"
+                        className="glass focus-ring shrink-0 w-11 h-11 rounded-xl grid place-items-center text-foreground transition-transform duration-150 hover:-translate-y-0.5 active:scale-95"
                       >
                         <FaGithub className="w-5 h-5" />
                       </a>
