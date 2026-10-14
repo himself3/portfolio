@@ -22,6 +22,8 @@ type Project = {
   tags: string[]
   github: string
   demo: string
+  /** Optional link to the product itself, shown as a second button beside "Live site". */
+  app?: string
   featured?: boolean
 }
 
@@ -33,6 +35,18 @@ const projects: Project[] = [
     tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
     github: 'https://github.com',
     demo: 'https://gixagency.com',
+  },
+  {
+    title: 'VorxxPOS',
+    description: 'Point-of-sale system built in Uganda, for Uganda: keeps selling offline, files EFRIS invoices with URA, and takes MTN and Airtel mobile money. Covers multi-branch inventory, sales, returns and refunds, shift cash-ups, and reports.',
+    images: [
+      { src: '/projects/vorxxpos-website.png', label: 'Website' },
+      { src: '/projects/vorxxpos-app.png', label: 'App' },
+    ],
+    tags: ['POS', 'Offline-first', 'EFRIS', 'Mobile Money', 'Multi-branch'],
+    github: 'https://github.com',
+    demo: 'https://vorxxpos.com',
+    app: 'https://app.vorxxpos.com',
   },
   {
     title: 'GIX Media Agency Website',
@@ -59,7 +73,8 @@ const projects: Project[] = [
     ],
     tags: ['Next.js', 'MySQL', 'TypeScript', 'Dashboard', 'Analytics'],
     github: 'https://github.com',
-    demo: 'https://app.viewix.co',
+    demo: 'https://viewix.co',
+    app: 'https://app.viewix.co',
   },
   {
     title: 'Preacher Holdings',
@@ -243,6 +258,18 @@ export default function Projects() {
                         Live site
                         <ArrowUpRight className="w-4 h-4" />
                       </a>
+                      {project.app && (
+                        <a
+                          href={project.app}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open the ${project.title} app`}
+                          className="glass focus-ring min-h-[44px] px-4 rounded-xl text-sm font-semibold text-foreground inline-flex items-center justify-center gap-2 transition-transform duration-150 hover:-translate-y-0.5 active:scale-95"
+                        >
+                          Open app
+                          <ArrowUpRight className="w-4 h-4" />
+                        </a>
+                      )}
                       <a
                         href={project.github}
                         target="_blank"
