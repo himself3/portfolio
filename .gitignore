@@ -32,3 +32,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Separate project with its own repo (himself3/Busulwa-portfolio)
+/BusulwaGadafi/
+
+# Job applications: personal documents, kept out of the public portfolio repo
+/applications/
+
+# Python bytecode from the design-system scripts
+__pycache__/
+*.pyc
